@@ -1,5 +1,14 @@
 /** Add css rules here for your application. */
 
+.cw-FlexTable td {
+  border: 1px solid #BBBBBB;
+  padding: 3px;
+}
+
+.cw-FlexTable-buttonPanel td {
+  border: 0px;
+}
+
 
 /** Example rules used by the template application (remove for your app) */
 h1 {

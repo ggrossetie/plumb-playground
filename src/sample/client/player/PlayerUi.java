@@ -1,6 +1,8 @@
 package sample.client.player;
 
 import plumb.client.display.ui.DisplayEditView;
+import sample.client.player.service.PlayerService;
+import sample.client.player.service.PlayerServiceAsync;
 import sample.shared.PlayerDisplay;
 
 import com.google.gwt.core.client.GWT;
@@ -9,6 +11,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
@@ -18,6 +21,8 @@ public class PlayerUi extends Composite implements HasText {
 
 	private static LoginUiBinder uiBinder = GWT
 			.create(LoginUiBinder.class);
+	
+	PlayerServiceAsync service = GWT.create(PlayerService.class);
 
 	interface LoginUiBinder extends UiBinder<Widget, PlayerUi> {
 	}
@@ -44,7 +49,16 @@ public class PlayerUi extends Composite implements HasText {
 		if (editView.hasErrors()) {
 			Window.alert("merci de compléter les champs manquants");
 		} else {
-			Window.alert(flush.toString());
+			service.registerPlayer(flush, new AsyncCallback<PlayerDisplay>() {
+				@Override
+				public void onSuccess(PlayerDisplay result) {
+					Window.alert("Ok");
+				}
+				@Override
+				public void onFailure(Throwable caught) {
+					GWT.log("", caught);
+				}
+			});
 		}
 	}
 

@@ -6,9 +6,15 @@
 			font-weight: bold;
 		}
 	</ui:style>
-	<g:HTMLPanel>
-		<h2>Nouveau Jeu</h2><hr></hr>
-		<v:DisplayEditView ui:field="editView"></v:DisplayEditView>
-		<g:Button styleName="{style.important}" ui:field="button" text="Enregistrer" />
-	</g:HTMLPanel>
+	<g:FlowPanel>
+		<g:HTMLPanel>
+			<h2>Nouveau Jeu</h2>
+			<hr></hr>
+			<v:DisplayEditView ui:field="editView"></v:DisplayEditView>
+			<g:Button styleName="{style.important}" ui:field="button"
+				text="Enregistrer" />
+		</g:HTMLPanel>
+		<g:HTMLPanel><hr></hr><h2>Liste des Jeux</h2></g:HTMLPanel>
+		<g:FlowPanel ui:field="playListContainer"></g:FlowPanel>
+	</g:FlowPanel>
 </ui:UiBinder> 

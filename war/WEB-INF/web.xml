@@ -17,16 +17,25 @@
   
   <!-- Servlets -->
   <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>sample.server.GreetingServiceImpl</servlet-class>
+    <servlet-name>playServlet</servlet-name>
+    <servlet-class>sample.server.PlayServiceImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/test_plumb/greet</url-pattern>
+    <servlet-name>playServlet</servlet-name>
+    <url-pattern>/test_plumb/play</url-pattern>
   </servlet-mapping>
   
+  <!-- Servlets -->
+  <servlet>
+    <servlet-name>playerServlet</servlet-name>
+    <servlet-class>sample.server.PlayerServiceImpl</servlet-class>
+  </servlet>
   
+  <servlet-mapping>
+    <servlet-name>playerServlet</servlet-name>
+    <url-pattern>/test_plumb/player</url-pattern>
+  </servlet-mapping>
   
   <!-- Default page to serve -->
   <welcome-file-list>

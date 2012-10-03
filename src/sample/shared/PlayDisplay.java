@@ -31,12 +31,65 @@ public class PlayDisplay extends DisplayBean {
 	
 	@NotNull
 	@DisplayProperty(label = "Date du jeu")
-	Date birthday;
+	Date playDate;
+
+	/**
+	 * @return the player
+	 */
+	public String getPlayer() {
+		return player;
+	}
+
+
+
+	/**
+	 * @param player the player to set
+	 */
+	public void setPlayer(String player) {
+		this.player = player;
+	}
+
+
+
+	/**
+	 * @return the hit
+	 */
+	public int getHit() {
+		return hit;
+	}
+
+
+
+	/**
+	 * @param hit the hit to set
+	 */
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+
+
+
+	/**
+	 * @return the birthday
+	 */
+	public Date getPlayDate() {
+		return playDate;
+	}
+
+
+
+	/**
+	 * @param birthday the birthday to set
+	 */
+	public void setPlayDate(Date birthday) {
+		this.playDate = birthday;
+	}
+
 
 
 	@Override
 	public String toString() {
-		return player + hit + birthday;
+		return player + hit + playDate;
 	}
 
 }

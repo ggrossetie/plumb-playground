@@ -8,12 +8,15 @@
 }
 
 .formLabel {
-	width: 100%;
+	width: 100px;
 	margin: 1px;
+	display: inline-block;
 }
 
 .formField {
 	width: 250px;
+	margin: 1px;
+	margin-left: 50px;
 }
 
 .suggestformField {

@@ -1,6 +1,10 @@
 package sample.client.play;
 
+import java.util.List;
+
 import plumb.client.display.ui.DisplayEditView;
+import sample.client.play.service.PlayService;
+import sample.client.play.service.PlayServiceAsync;
 import sample.shared.PlayDisplay;
 
 import com.google.gwt.core.client.GWT;
@@ -9,13 +13,18 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
 
 public class PlayUi extends Composite implements HasText {
 
+	
+	PlayServiceAsync service = GWT.create(PlayService.class);
+	
 	private static LoginUiBinder uiBinder = GWT
 			.create(LoginUiBinder.class);
 
@@ -25,6 +34,8 @@ public class PlayUi extends Composite implements HasText {
 	public PlayUi() {
 		editView = new DisplayEditView<PlayDisplay>(new PlayDisplay());
 		initWidget(uiBinder.createAndBindUi(this));
+		playListContainer.add(playsUi.asWidget());
+		fetchExistingPlays();
 	}
 	
 	@UiField(provided=true) 
@@ -32,10 +43,30 @@ public class PlayUi extends Composite implements HasText {
 
 	@UiField
 	Button button;
+	
+	@UiField
+	FlowPanel playListContainer;
+	
+	PlaysUi playsUi = new PlaysUi();
 
 	public PlayUi(String firstName) {
 		this();
 		button.setText(firstName);
+	}
+	
+	private void fetchExistingPlays() {
+		service.readPlays(new AsyncCallback<List<PlayDisplay>>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				GWT.log("", caught);
+			}
+			@Override
+			public void onSuccess(List<PlayDisplay> plays) {
+				for (PlayDisplay playDisplay : plays) {
+					playsUi.addPlay(playDisplay);
+				}
+			}
+		});
 	}
 
 	@UiHandler("button")
@@ -44,7 +75,16 @@ public class PlayUi extends Composite implements HasText {
 		if (editView.hasErrors()) {
 			Window.alert("merci de compléter les champs manquants");
 		} else {
-			Window.alert(flush.toString());
+			service.registerPlay(flush, new AsyncCallback<PlayDisplay>() {
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert(caught.getMessage());
+				}
+				@Override
+				public void onSuccess(PlayDisplay result) {
+					playsUi.addPlay(result);
+				}
+			});
 		}
 	}
 
