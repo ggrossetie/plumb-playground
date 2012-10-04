@@ -9,6 +9,8 @@ import sample.shared.PlayDisplay;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -18,6 +20,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public class PlayUi extends Composite implements HasText {
@@ -48,6 +51,10 @@ public class PlayUi extends Composite implements HasText {
 	FlowPanel playListContainer;
 	
 	PlaysUi playsUi = new PlaysUi();
+	
+	@UiField TextBox playerFilter;
+	
+	@UiField Button buttonFilter;
 
 	public PlayUi(String firstName) {
 		this();
@@ -55,6 +62,13 @@ public class PlayUi extends Composite implements HasText {
 	}
 	
 	private void fetchExistingPlays() {
+		readPlays();
+	}
+
+	/**
+	 * 
+	 */
+	private void readPlays() {
 		service.readPlays(new AsyncCallback<List<PlayDisplay>>() {
 			@Override
 			public void onFailure(Throwable caught) {
@@ -62,6 +76,39 @@ public class PlayUi extends Composite implements HasText {
 			}
 			@Override
 			public void onSuccess(List<PlayDisplay> plays) {
+				playsUi.clearPlays();
+				for (PlayDisplay playDisplay : plays) {
+					playsUi.addPlay(playDisplay);
+				}
+			}
+		});
+	}
+	
+	@UiHandler("playerFilter")
+	void onClick(com.google.gwt.event.dom.client.FocusEvent e) {
+		playerFilter.setText("");
+	}
+	
+	@UiHandler("buttonFilter")
+	void onClickFilter(ClickEvent e) {
+		if (! "".equals(playerFilter.getText()) && ! "filtrer par joueur".equals(playerFilter.getText())) {
+			filterByPlayer();
+		} else {
+			readPlays();
+		}
+	}
+
+	/**
+	 * 
+	 */
+	private void filterByPlayer() {
+		service.filterByPlayer(playerFilter.getValue(), new AsyncCallback<List<PlayDisplay>>() {
+			@Override
+			public void onFailure(Throwable caught) {
+			}
+			@Override
+			public void onSuccess(List<PlayDisplay> plays) {
+				playsUi.clearPlays();
 				for (PlayDisplay playDisplay : plays) {
 					playsUi.addPlay(playDisplay);
 				}

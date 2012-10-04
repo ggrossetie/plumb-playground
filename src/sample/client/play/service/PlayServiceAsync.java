@@ -16,4 +16,6 @@ public interface PlayServiceAsync {
 	void registerPlay(PlayDisplay d, AsyncCallback<PlayDisplay> callback);
 
 	void readPlays(AsyncCallback<List<PlayDisplay>> callback);
+
+	void filterByPlayer(String player, AsyncCallback<List<PlayDisplay>> callback);
 }

@@ -41,7 +41,7 @@ public class PlayServiceImpl extends RemoteServiceServlet implements
 		playEntity.setProperty("player", d.getPlayer());
 		playEntity.setProperty("playDate", d.getPlayDate());
 		// save
-		Key key = datastore.put(playEntity); // System.out.println(key.getId());
+		Key key = datastore.put(playEntity);
 		return d;
 	}
 	
@@ -49,7 +49,26 @@ public class PlayServiceImpl extends RemoteServiceServlet implements
 	public List<PlayDisplay> readPlays() {
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Query query = new Query(PlayDisplay.class.getName());
-		// query.setFilter(new Query.FilterPredicate("player", FilterOperator.EQUAL, "Marina"));
+		List<PlayDisplay> displays = executeQuery(datastore, query);
+		return displays;
+	}
+
+	@Override
+	public List<PlayDisplay> filterByPlayer(String player) {
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		Query query = new Query(PlayDisplay.class.getName());
+		query.setFilter(new Query.FilterPredicate("player", FilterOperator.EQUAL, player));
+		List<PlayDisplay> displays = executeQuery(datastore, query);
+		return displays;
+	}
+
+	/**
+	 * @param datastore
+	 * @param query
+	 * @return
+	 */
+	private List<PlayDisplay> executeQuery(DatastoreService datastore,
+			Query query) {
 		List<Entity> asList = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(10));
 		List<PlayDisplay> displays = new ArrayList<PlayDisplay>();
 		for (Entity e : asList) {

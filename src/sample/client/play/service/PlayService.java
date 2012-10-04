@@ -17,4 +17,6 @@ public interface PlayService extends RemoteService {
 	PlayDisplay registerPlay(PlayDisplay d);
 
 	List<PlayDisplay> readPlays();
+	
+	List<PlayDisplay> filterByPlayer(String player);
 }

@@ -15,6 +15,9 @@
 				text="Enregistrer" />
 		</g:HTMLPanel>
 		<g:HTMLPanel><hr></hr><h2>Liste des Jeux</h2></g:HTMLPanel>
-		<g:FlowPanel ui:field="playListContainer"></g:FlowPanel>
+		<g:FlowPanel ui:field="playListContainer">
+			<g:TextBox ui:field="playerFilter" text="filtrer par joueur" width="100px"></g:TextBox>
+			<g:Button text="filtrer" ui:field="buttonFilter"></g:Button>
+		</g:FlowPanel>
 	</g:FlowPanel>
 </ui:UiBinder> 
