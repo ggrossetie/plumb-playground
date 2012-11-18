@@ -1,0 +1,32 @@
+/** Add css rules here for your application. */
+
+.errorText {
+	color: #B94A48;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.formLabel {
+	width: 100px;
+	margin: 1px;
+}
+
+.formField {
+	width: 250px;
+	background-color: black;
+}
+
+.suggestformField {
+	width: 250px;
+	margin-right: 3px;
+}
+
+.formLabel .errorText {
+	text-align: center;
+}
+
+.formField_Container {
+	padding: 1px;
+	margin: 1px;
+}

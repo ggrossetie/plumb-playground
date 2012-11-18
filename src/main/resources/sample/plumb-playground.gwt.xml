@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='test_plumb'>
+	<!-- Inherit the core Web Toolkit stuff. -->
+	<inherits name='com.google.gwt.user.User' />
+
+    <!-- Errai -->
+    <inherits name="org.jboss.errai.common.ErraiCommon"/>
+    <inherits name="org.jboss.errai.bus.ErraiBus"/>
+    <inherits name="org.jboss.errai.ioc.Container"/>
+    <inherits name="org.jboss.errai.enterprise.CDI"/>
+
+	<!-- Other module inherits -->
+	<inherits name="plumb.plumb" />
+
+	<generate-with class="plumb.generator.DriverDelegateGenerator">
+		<when-type-assignable class="plumb.client.display.ui.DriverDelegate" />
+	</generate-with>
+	
+	<extend-property name="plumb.scan.package" values="sample"/>
+	<set-property name="plumb.scan.package" value="sample"/>
+
+	<!-- Specify the paths for translatable code -->
+	<source path='client' />
+	<source path='shared' />
+
+</module>
