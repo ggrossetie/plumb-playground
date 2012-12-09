@@ -1,5 +1,7 @@
 package sample.client.play;
 
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -7,23 +9,27 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.*;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.Widget;
+
 import plumb.client.display.ui.DisplayEditView;
 import sample.client.play.service.PlayService;
 import sample.client.play.service.PlayServiceAsync;
 import sample.shared.PlayDisplay;
-
-import java.util.List;
 
 public class PlayUi extends Composite implements HasText {
 
 	
 	PlayServiceAsync service = GWT.create(PlayService.class);
 	
-	private static LoginUiBinder uiBinder = GWT
-			.create(LoginUiBinder.class);
+	private static PlayUiUiBinder uiBinder = GWT
+			.create(PlayUiUiBinder.class);
 
-	interface LoginUiBinder extends UiBinder<Widget, PlayUi> {
+	interface PlayUiUiBinder extends UiBinder<Widget, PlayUi> {
 	}
 
 	public PlayUi() {

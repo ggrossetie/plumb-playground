@@ -3,10 +3,11 @@
  */
 package sample.shared;
 
+import javax.validation.constraints.NotNull;
+
 import plumb.shared.display.DisplayBean;
 import plumb.shared.display.DisplayProperty;
-
-import javax.validation.constraints.NotNull;
+import plumb.shared.display.ValueProperty;
 
 /**
  * @author bkhadige
@@ -18,6 +19,7 @@ public class LoginDisplay extends DisplayBean {
 
 	@NotNull
 	@DisplayProperty(label = "Identifiant")
+	@ValueProperty(values = {"admin", "user"})
 	String login;
 
 	@NotNull

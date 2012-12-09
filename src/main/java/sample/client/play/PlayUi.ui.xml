@@ -9,7 +9,7 @@
     <g:FlowPanel>
         <g:HTMLPanel>
             <h4>New game</h4>
-            <v:DisplayEditView ui:field="editView"></v:DisplayEditView>
+            <v:DisplayEditView ui:field="editView"/>
             <g:Button styleName="{style.important}" ui:field="button"
                       text="Save"/>
         </g:HTMLPanel>
@@ -18,8 +18,8 @@
         </g:HTMLPanel>
         <br/>
         <g:FlowPanel ui:field="playListContainer">
-            <g:TextBox ui:field="playerFilter" text="Filter by player" width="100px"></g:TextBox>
-            <g:Button text="Filter" ui:field="buttonFilter"></g:Button>
+            <g:TextBox ui:field="playerFilter" text="Filter by player" width="100px"/>
+            <g:Button text="Filter" ui:field="buttonFilter"/>
         </g:FlowPanel>
     </g:FlowPanel>
 </ui:UiBinder> 
