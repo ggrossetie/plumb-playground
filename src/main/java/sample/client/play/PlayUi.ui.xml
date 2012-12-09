@@ -1,25 +1,26 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-             xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:v="urn:import:plumb.client.display.ui">
-    <ui:style>
-        .important {
-            font-weight: bold;
-        }
-    </ui:style>
-    <g:FlowPanel>
-        <g:HTMLPanel>
-            <h4>New game</h4>
-            <v:DisplayEditView ui:field="editView"/>
-            <g:Button styleName="{style.important}" ui:field="button"
-                      text="Save"/>
-        </g:HTMLPanel>
-        <g:HTMLPanel>
-            <h4>List of games</h4>
-        </g:HTMLPanel>
-        <br/>
-        <g:FlowPanel ui:field="playListContainer">
-            <g:TextBox ui:field="playerFilter" text="Filter by player" width="100px"/>
-            <g:Button text="Filter" ui:field="buttonFilter"/>
-        </g:FlowPanel>
-    </g:FlowPanel>
+			 xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:v="urn:import:plumb.client.display.ui">
+	<ui:style>
+		.important {
+		font-weight: bold;
+		}
+	</ui:style>
+	<g:FlowPanel>
+		<g:HTMLPanel>
+			<h4>New game</h4>
+			<v:DisplayEditView ui:field="editView"/>
+			<g:Button ui:field="button" text="Save"/>
+		</g:HTMLPanel>
+		<g:HTML>
+			<br/>
+		</g:HTML>
+		<g:HTMLPanel>
+			<h4>List of games</h4>
+		</g:HTMLPanel>
+		<g:FlowPanel ui:field="playListContainer">
+			<g:TextBox ui:field="playerFilter" text="Filter by player" width="100px"/>
+			<g:Button text="Filter" ui:field="buttonFilter"/>
+		</g:FlowPanel>
+	</g:FlowPanel>
 </ui:UiBinder> 

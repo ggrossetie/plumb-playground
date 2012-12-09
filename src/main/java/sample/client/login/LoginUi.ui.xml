@@ -8,8 +8,8 @@
     </ui:style>
     <g:HTMLPanel>
         <h4>Connect</h4>
-        <v:DisplayEditView ui:field="editView"></v:DisplayEditView>
-        <g:FlowPanel ui:field="progress"></g:FlowPanel>
+        <v:DisplayEditView ui:field="editView"/>
+        <g:FlowPanel ui:field="progress"/>
         <g:HTMLPanel styleName="form-actions">
             <g:Button styleName="btn btn-primary" ui:field="button" text="Login"/>
         </g:HTMLPanel>
