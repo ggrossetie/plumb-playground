@@ -19,3 +19,8 @@ war/WEB-INF/classes/
 /gwt-unitCache
 /.classpath
 /.project
+
+.errai/
+.idea/
+*.iml
+target/
